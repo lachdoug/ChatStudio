@@ -1,0 +1,1 @@
+<pre><%= JSON.pretty_generate( JSON.parse( @room.to_json(include: :messages) ) ) %></pre>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>ChatStudio</title>
+    <link rel="shortcut icon" href="logo.png">
+    <%= csrf_meta_tags %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="/vendor/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/vendor/font-awesome-4.7.0/css/font-awesome.min.css">
+
+    <script type="text/javascript" src="/vendor/jquery-3.2.0.min.js"></script>
+  	<script type="text/javascript" src="/vendor/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="vendor/celljs-0.0.0.js"></script> -->
+
+  </head>
+
+  <body>
+
+    <%= console if Rails.env.development? && current_user && current_user.is_admin? %>
+    <%= page_body(yield) %>
+  </body>
+
+</html>

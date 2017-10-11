@@ -1,0 +1,18 @@
+<div class="text-center home_page">
+  <p>ChatStudio is a basic instant messaging application server.</p>
+  <p>Use it to explore concepts in client-side web app development.</p>
+  <p>You can develop your own client applications, and then share your apps with other users.</p>
+  <p>Here are some examples of user client apps.</p>
+
+  <%= "No apps" unless @client_apps.any? %>
+  <% @client_apps.each do |client_app| %>
+    <div class="btn-group">
+      <a href="/client_apps/<%= client_app.id %>/serve" target="_ChatStudioClient" class="btn btn-lg">
+        <%= client_app.name %><br>
+        <small>by <%= client_app.user.username %></small>
+      </a>
+
+    </div>
+  <% end %>
+
+</div>

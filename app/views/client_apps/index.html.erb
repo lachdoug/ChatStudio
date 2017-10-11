@@ -1,0 +1,4 @@
+<%= link_to icon_text("New client", 'fa-plus'), new_client_app_path, class: 'btn btn-lg pull-right', remote: true %><br>
+<% current_user.client_apps.each do |client_app| %>
+  <%= link_to icon_text(client_app.name, 'fa-angle-right'), client_app, class: 'btn btn-lg' %><br>
+<% end %>

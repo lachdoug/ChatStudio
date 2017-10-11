@@ -1,0 +1,6 @@
+$(".modal").modal("hide");
+$("body").append(
+  "<%= j modal( icon_text( 'New room', 'fa-plus' ), render( 'server_data/rooms/form' ) ) %>"
+);
+$(".modal").on("hidden.bs.modal", function(){$(this).remove();});
+$(".modal").modal("show");

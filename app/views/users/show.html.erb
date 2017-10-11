@@ -1,0 +1,8 @@
+<div class="">
+
+  <%= link_to icon_text('Change password', 'fa-lock'), edit_user_registration_path, class: 'btn btn-lg pull-right' %>
+  <h2><%= current_user.username %></h2>
+  <hr>
+  <p>API token: <code><%= current_user.api_token %></code></p>
+
+</div>

@@ -1,0 +1,9 @@
+<%= simple_form_for @client_app, url: client_app_source_path, remote: true do |f| %>
+  <%= f.input :source %>
+<%= f.submit %>
+<% end %>
+
+<a id="editorSave" class="btn btn-lg"><i class="fa fa-save"></i> Save</a>
+<a href="<%= client_app_path(@client_app) %>" id="editorClose" class="btn btn-lg"><i class="fa fa-times"></i> Close</a>
+<div id="editorMenubar"><%= @client_app.name %></div>
+<div id="editor"><%= @client_app.source %></div>

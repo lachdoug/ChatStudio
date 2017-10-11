@@ -1,0 +1,50 @@
+html body { padding: 15px 0px; margin-bottom: 200px;}
+.flatchat_page { font-size: 16px }
+.flatchat_page ul { list-style-type: square; }
+/*.flatchat_page .home_page { margin-top: 10px; }*/
+/*.flatchat_page .home_page h2 { color: #337ab7; text-shadow: 2px 2px rgba(0, 0, 0, 0.1); }*/
+.flatchat_page .devise_form { max-width: 300px; display: inline-block; }
+.flatchat_page table th { padding-right: 10px; border-bottom: 1px solid #ccc; }
+.flatchat_page table td { padding-right: 10px; }
+/*.flatchat_page pre { max-height: 300px; background-color: #fff; color: #a04; }*/
+.flatchat_page .tab-pane-content { padding: 10px; }
+/*.flatchat_page #server_events { white-space: nowrap; overflow-x: scroll; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }*/
+.flatchat_page .alert { text-align: left; }
+.flatchat_page .btn.page_navigation_link { border-radius: 0px; margin-bottom: 5px; }
+.flatchat_page .btn.page_navigation_link.active { border-bottom: 2px solid; box-shadow: none; }
+
+#editor {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    font-size: 16px;
+}
+
+#editorMenubar {
+  background-color: #fff;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 0px;
+  height: 50px;
+  z-index: 1;
+  text-align: center;
+  line-height: 50px;
+  border-bottom: 1px solid lightgrey;
+}
+
+#editorSave {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  z-index: 2;
+}
+
+#editorClose {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 2;
+}
