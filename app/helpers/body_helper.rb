@@ -7,8 +7,9 @@ module BodyHelper
           brand_link +
           if current_user
             client_apps_link +
-            server_data_link +
-            workshop_link
+            server_data_link
+            # +
+            # workshop_link
           end
         end +
         content_tag(:div, class: "pull-right") do
@@ -27,25 +28,25 @@ module BodyHelper
 
   def brand_link
     link_to(root_path, class: "page_navigation_link btn btn-lg") do
-      icon_text 'ChatStudio', 'fa-comment'
+      'Enginepad'
     end
   end
 
-  def workshop_link
-    link_to(workshop_path, class: "page_navigation_link btn btn-lg #{'active' if controller_name == 'workshops'}") do
-      icon_text 'Workshop', 'fa-keyboard-o'
-    end
-  end
+  # def workshop_link
+  #   link_to(workshop_path, class: "page_navigation_link btn btn-lg #{'active' if controller_name == 'workshops'}") do
+  #     icon_text 'Workshop', 'fa-keyboard-o'
+  #   end
+  # end
 
   def client_apps_link
     link_to(client_apps_path, class: "page_navigation_link btn btn-lg #{'active' if controller_name == 'client_apps'}") do
-      icon_text 'Clients', 'fa-mobile'
+      icon_text 'Apps', 'fa-mobile'
     end
   end
 
   def server_data_link
-    link_to(server_data_path, class: "page_navigation_link btn btn-lg #{'active' if controller_name == 'server_data'}") do
-      icon_text 'Server', 'fa-server'
+    link_to(servers_path, class: "page_navigation_link btn btn-lg #{'active' if controller_path.split('/').first == 'servers'}") do
+      icon_text 'Servers', 'fa-server'
     end
   end
 

@@ -1,4 +1,59 @@
-<%= link_to icon_text("New client", 'fa-plus'), new_client_app_path, class: 'btn btn-lg pull-right', remote: true %><br>
-<% current_user.client_apps.each do |client_app| %>
-  <%= link_to icon_text(client_app.name, 'fa-angle-right'), client_app, class: 'btn btn-lg' %><br>
+<script>
+  function clientAppAllowDrop(ev) {
+      ev.preventDefault();
+  };
+
+  function clientAppDrag(ev) {
+    ev.dataTransfer.setData("text", ev.target.closest('.drag_to_sort').id);
+  };
+
+  function clientAppDrop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+
+    var target = ev.target.closest('.drag_to_sort');
+    var dragged = $("#" + data)[0];
+
+    if ( target != dragged ) {
+      var targetInput = $(target).find('input');
+      var draggedInput = $(dragged).find('input');
+
+      dragged.remove();
+      target.parentElement.insertBefore(dragged, target);
+
+      var form = $("#drag_to_sort_client_apps_form");
+      var sortOrderInputs = form.find(".drag_to_sort .user_client_apps_sort_order input");
+      sortOrderInputs.each( function( i ) { $(this).val(i); })
+
+      form.find("input[name='commit']").click();
+    };
+  };
+</script>
+
+<%= link_to icon_text("App library", 'fa-play'),
+root_path, class: 'btn btn-lg pull-right' %>
+
+<%= link_to icon_text("New app", 'fa-plus'),
+new_client_app_path, class: 'btn btn-lg pull-right', remote: true %><br>
+
+<%= simple_form_for current_user, html: { id: "drag_to_sort_client_apps_form" }, url: reorder_client_apps_path(), method: :post, remote: true do |f| %>
+  <%= f.simple_fields_for :client_apps, f.object.client_apps.sorted do |ff| %>
+    <%= content_tag :div,
+    class: 'drag_to_sort',
+    'data-client_app_id': ff.object.id,
+    id: "client_app_#{ff.object.id}",
+    draggable: :draggable,
+    ondragover: "clientAppAllowDrop(event)",
+    ondrop: "clientAppDrop(event)",
+    ondragstart: "clientAppDrag(event)" do %>
+    <%= ff.input :id, as: :hidden %>
+    <%= ff.input :sort_order, as: :hidden %>
+      <%= link_to ( ff.object.published ?
+        icon_text(ff.object.name, 'fa-caret-right') :
+        icon_text(ff.object.name, 'fa-angle-right')
+      ), ff.object,
+      class: 'btn btn-lg' %>
+    <% end %>
+  <% end %>
+  <div style="display: none;"><%= f.submit %></div>
 <% end %>

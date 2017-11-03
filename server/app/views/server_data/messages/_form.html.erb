@@ -1,5 +1,0 @@
-<%= simple_form_for @message, url: server_data_messages_path, remote: true do |f| %>
-  <%= f.association :room, label_method: :name, value_method: :id, prompt: 'Select a room' %>
-  <%= f.input :body %>
-  <%= f.button :submit %>
-<% end %>

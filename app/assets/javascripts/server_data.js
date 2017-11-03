@@ -13,26 +13,23 @@ $( document ).on( 'turbolinks:load', function() {
   $("#start_events_button").on('click', function(e) {
     e.preventDefault();
     startEvents();
-    $("#start_events_button").hide();
-    $("#stop_events_button").show();
   });
 
   $("#stop_events_button").on('click', function(e) {
     e.preventDefault();
     stopEvents();
-    $("#stop_events_button").hide();
-    $("#start_events_button").show();
   });
 
 } );
 
 window.onbeforeunload = function () {
-  console.log('bye');
+  // console.log('bye');
   stopEvents();
   // return "Leave page?";
 };
 
 function stopEvents() {
+  showEventsStopped();
   if ( eventSource != null ) {
     eventSource.close();
     eventSource = null;
@@ -42,14 +39,31 @@ function stopEvents() {
 
 function startEvents() {
   stopEvents();
-  eventSource = new EventSource('/api/v0/events');
+  showEventsRunning();
+  eventSource = new EventSource('/servers/chat_studio/api/v0/events');
   eventSource.addEventListener('message', function(e){
     $("#server_events").prepend(
        JSON.stringify( JSON.parse( e.data ), null, 2) + "\n\n"
-  )});
+     )
+   });
+  eventSource.addEventListener('error', function(e){
+    stopEvents();
+  });
   console.log('Events started.');
 };
 
+
+function showEventsRunning() {
+  $("#start_events_button").hide();
+  $("#stop_events_button").show();
+  $("#events_running_notification").show();
+};
+
+function showEventsStopped() {
+  $("#stop_events_button").hide();
+  $("#events_running_notification").hide();
+  $("#start_events_button").show();
+};
 
 
 

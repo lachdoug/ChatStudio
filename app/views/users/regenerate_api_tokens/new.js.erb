@@ -1,0 +1,6 @@
+$(".modal").modal("hide");
+$("body").append(
+  "<%= j modal( icon_text( 'Regenerate API token', 'fa-user-secret' ), render( 'users/regenerate_api_tokens/form' ) ) %>"
+);
+$(".modal").on("hidden.bs.modal", function(){$(this).remove();});
+$(".modal").modal("show");

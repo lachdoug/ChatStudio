@@ -1,0 +1,6 @@
+$(".modal").modal("hide");
+$("body").append(
+  "<%= j modal( icon_text( 'Edit client app', 'fa-edit' ), render( 'client_apps/form' ) ) %>"
+);
+$(".modal").on("hidden.bs.modal", function(){$(this).remove();});
+$(".modal").modal("show");

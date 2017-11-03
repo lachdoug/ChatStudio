@@ -1,0 +1,6 @@
+$(".modal").modal("hide");
+$("body").append(
+  "<%= j modal( icon_text( 'Client app source', 'fa-code' ), render( 'client_apps/sources/read' ), wide: true ) %>"
+);
+$(".modal").on("hidden.bs.modal", function(){$(this).remove();});
+$(".modal").modal("show");

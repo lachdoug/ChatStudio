@@ -3,6 +3,7 @@
   <%= link_to icon_text('Change password', 'fa-lock'), edit_user_registration_path, class: 'btn btn-lg pull-right' %>
   <h2><%= current_user.username %></h2>
   <hr>
-  <p>API token: <code><%= current_user.api_token %></code></p>
-
+  <p>API token: <code id="user_api_token"><%= current_user.api_token %></code>
+    <%= link_to icon_text('Regenerate token', 'fa-user-secret'), new_user_regenerate_api_token_path(current_user), class: 'btn btn-lg pull-right', remote: true %>
+  </p>
 </div>

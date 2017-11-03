@@ -1,18 +1,25 @@
 <div class="text-center home_page">
-  <p>ChatStudio is a basic instant messaging application server.</p>
-  <p>Use it to explore concepts in client-side web app development.</p>
-  <p>You can develop your own client applications, and then share your apps with other users.</p>
-  <p>Here are some examples of user client apps.</p>
 
-  <%= "No apps" unless @client_apps.any? %>
-  <% @client_apps.each do |client_app| %>
-    <div class="btn-group">
-      <a href="/client_apps/<%= client_app.id %>/serve" target="_ChatStudioClient" class="btn btn-lg">
-        <%= client_app.name %><br>
-        <small>by <%= client_app.user.username %></small>
-      </a>
+  <div style="font-size: 0.8em; text-align: left; padding: 30px; border: 1px solid lightgrey;">
+    <% if current_user %>
+      <%= "No apps" unless @client_apps.any? %>
+      <% @client_apps.each do |client_app| %>
+        <div class="clearfix">
+          <%= link_to(client_app_serve_path(client_app), class: 'btn btn-lg', target: "_EnginepadApp_#{client_app.id}" ) { content_tag(:span, client_app.name) + content_tag(:small, " by #{client_app.user.username}") } %>
+          <%= link_to(icon_text(false, 'fa-code'), client_app_source_path(client_app), class: 'btn btn-lg', remote: true) %>
+          <!-- <div class="btn-group pull-right">
+            <%= link_to(icon_text(false, 'fa-play'), client_app_serve_path(client_app), class: 'btn btn-lg', target: "_EnginepadApp_#{client_app.id}" ) %>
+            <%= link_to(icon_text(false, 'fa-code-fork'), client_app_fork_path(client_app), class: 'btn btn-lg') %>
+          </div> -->
+        </div>
+      <% end %>
+    <% else %>
+      <p>Enginepad is a basic instant messaging application server.</p>
+      <p>Use it to explore concepts in client-side web app development.</p>
+      <p>You can develop your own client applications, and then share your apps with other users.</p>
+      <p>Sign up to see some examples of user client apps.</p>
+    <% end %>
 
-    </div>
-  <% end %>
+  </div>
 
 </div>

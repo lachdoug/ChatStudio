@@ -18,7 +18,7 @@ gem 'rails_admin' #, '>= 1.0.0.rc'
 gem 'cancancan'
 gem 'simple_form'
 gem 'ace-rails-ap' # ACE editor
-
+gem 'seed_dump'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'

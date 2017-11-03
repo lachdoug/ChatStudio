@@ -1,8 +1,8 @@
 module ModalHelper
 
-  def modal(title, body)
+  def modal(title, body, opts={})
     content_tag( :div, class: 'modal', tabindex: '-1' ) do
-      content_tag( :div, class: 'modal-dialog' ) do
+      content_tag( :div, class: 'modal-dialog' + ( opts[:large] ? '' : 'modal-lg') ) do
         content_tag( :div, class: 'modal-content' ) do
           content_tag( :div, class: 'modal-header' ) do
             content_tag( :button, class: 'close', data: { dismiss: :modal } ) do

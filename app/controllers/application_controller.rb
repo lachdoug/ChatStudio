@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
 
-  protect_from_forgery with: :exception, unless: :api_controller?
+  protect_from_forgery with: :exception #, unless: :api_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   before_action :authenticate
@@ -18,23 +18,23 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def api_controller?
-    params[:controller].split('/').first == 'api'
-  end
+  # def api_controller?
+  #   params[:controller].split('/').first == 'api'
+  # end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:workshop_key])
   end
 
-  def after_sign_in_path_for(resource)
-    user_path(resource)
-  end
+  # def after_sign_in_path_for(resource)
+  #   user_path(resource)
+  # end
 
   # Authenticate the user with token based authentication
   def authenticate
     return true if public_action?
     if request.format.json?
-      authenticate_token || render_json_unauthorized
+      render_json_unauthorized unless authenticate_token
     else
       authenticate_user!
     end

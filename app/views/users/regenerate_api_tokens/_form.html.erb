@@ -1,0 +1,4 @@
+<%= simple_form_for current_user, url: user_regenerate_api_token_path(current_user), method: :POST, remote: true do |f| %>
+  <%= f.input :password %>
+  <%= f.button :submit %>
+<% end %>

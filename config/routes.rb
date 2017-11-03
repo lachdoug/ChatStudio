@@ -6,25 +6,36 @@ Rails.application.routes.draw do
 
   root to: 'homes#show'
 
-  resource :workshop
-  resource :server_data, only: [:show] do
-    resources :rooms, module: :server_data, only: [:new, :create ]
-    resources :messages, module: :server_data, only: [:new, :create ]
-    resource :events, module: :server_data, only: [:show ]
-  end
-  resources :users, only: [:show]
-  resources :client_apps do
-    resource :source, module: :client_apps, only: [:edit, :update]
-    resource :serve, module: :client_apps, only: [:show]
-  end
+  # resource :workshop
+  # resource :server_data, only: [:show] do
+  # end
   resource :home, only: [:show]
-  resource :fake_post, only: [:create]
-  namespace :api do
-    namespace :v0 do
-      resources :rooms, only: [:index, :show, :create]
-      resources :messages, only: [:show, :create]
-      resource :events, only: [:show ]
+  resources :users, only: [:show] do
+    resource :regenerate_api_token, module: :users, only: [:new, :create]
+  end
+  resources :client_apps do
+    resource :source, module: :client_apps, only: [:show, :edit, :update]
+    resource :fork, module: :client_apps, only: [:new, :create]
+    resource :serve, module: :client_apps, only: [:show]
+    post :reorder, on: :collection
+  end
+  resources :servers, only: [:index]
+  namespace :servers do
+    namespace :chat_studio do
+      resource :home, only: [ :show ]
+      resources :rooms, only: [ :new, :create ]
+      resources :messages, only: [ :new, :create ]
+      resource :events, only: [ :show ]
+      namespace :api do
+        namespace :v0 do
+          resource :user, only: [ :show ]
+          resources :rooms, only: [:index, :show, :create]
+          resources :messages, only: [ :show, :create ]
+          resource :events, only: [ :show ]
+        end
+      end
     end
   end
+  resource :fake_post, only: [ :create ]
 
 end

@@ -4,6 +4,6 @@
 <% end %>
 
 <a id="editorSave" class="btn btn-lg"><i class="fa fa-save"></i> Save</a>
-<a href="<%= client_app_path(@client_app) %>" id="editorClose" class="btn btn-lg"><i class="fa fa-times"></i> Close</a>
+<a href="<%= client_app_path(@client_app) %>" onclick="closeClientSource(event)" id="editorClose" class="btn btn-lg"><i class="fa fa-times"></i> Close</a>
 <div id="editorMenubar"><%= @client_app.name %></div>
 <div id="editor"><%= @client_app.source %></div>

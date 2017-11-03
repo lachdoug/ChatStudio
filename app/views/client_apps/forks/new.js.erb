@@ -1,0 +1,6 @@
+$(".modal").modal("hide");
+$("body").append(
+  "<%= j modal( icon_text( 'Fork client app', 'fa-code-fork' ), render( 'client_apps/forks/form' ) ) %>"
+);
+$(".modal").on("hidden.bs.modal", function(){$(this).remove();});
+$(".modal").modal("show");

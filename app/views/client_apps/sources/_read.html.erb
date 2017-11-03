@@ -1,0 +1,3 @@
+<%= link_to(icon_text("Fork", 'fa-code-fork'), new_client_app_fork_path(@client_app), class: 'btn btn-lg', remote: true) %>
+<%= link_to( icon_text("Run", "fa-play"), client_app_serve_path(@client_app.id), class: "btn btn-lg pull-right", target: ( "_EnginepadApp_" + @client_app.id.to_s )  ) %>
+<pre><%= @client_app.source %></pre>

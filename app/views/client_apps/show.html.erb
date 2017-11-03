@@ -1,7 +1,15 @@
-<h3 style="display: inline-block"><%= @client_app.name %></h3>
-<%= link_to( icon_text(false, "fa-edit"), edit_client_app_path(@client_app.id), class: "btn btn-lg" ) %>
+<%= link_to( icon_text(false, "fa-arrow-up"), client_apps_path() + "#client_app_#{@client_app.id}", class: "btn btn-lg" ) %>
+<%= link_to(icon_text("Fork", 'fa-code-fork'), new_client_app_fork_path(@client_app), class: 'btn btn-lg', remote: true) %>
+<%= link_to( icon_text("Edit", "fa-edit"), edit_client_app_path(@client_app.id), class: "btn btn-lg", remote: true ) %>
+<%= link_to( icon_text("Delete", "fa-trash-o"), client_app_path(@client_app.id), method: :DELETE, class: "btn btn-lg pull-right", data: { confirm: "Are you sure that you want to delete this app?"}, remote: true ) %><br>
+<h3><%= @client_app.name %></h3>
+<p class="clearfix">
+  <%= @client_app.description %>
+  <small class="pull-right"><%= @client_app.published ? 'Published' : 'Unpublished' %></small>
+</p>
 <hr>
 <div class="clearfix">
+  <%= link_to( icon_text("Run", "fa-play"), client_app_serve_path(@client_app.id), class: "btn btn-lg pull-right", target: ( "_EnginepadApp_" + @client_app.id.to_s )  ) %>
   <%= link_to( icon_text("Code", "fa-keyboard-o"), edit_client_app_source_path(@client_app.id), class: "btn btn-lg" ) %>
 </div>
 <pre><%= @client_app.source %></pre>
